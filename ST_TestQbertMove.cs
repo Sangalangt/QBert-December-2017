@@ -1,22 +1,25 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ST_TestQbertMove : MonoBehaviour {
-   public GameObject QB;
-   public Vector3 spawnspot = new Vector3(0, 7.5f, 6);
-   public Vector3 curPosition;
+public class ST_TestQbertMove : MonoBehaviour
+{
+    public GameObject QB;
+    public Vector3 spawnspot = new Vector3(0, 7.5f, 6);
+    public Vector3 curPosition;
     public float delay = 1;
     private float timer;
     public GameObject QBertRenderer;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         QB.transform.position = spawnspot;
-	}
-	
+    }
 
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         timer += Time.deltaTime;
         curPosition = QB.transform.position;
 
@@ -25,7 +28,7 @@ public class ST_TestQbertMove : MonoBehaviour {
             QBertRenderer.SetActive(true);
 
 
-            if (Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 QB.transform.Translate(0, 0, -1);
                 turnoffrenderer();
@@ -46,12 +49,12 @@ public class ST_TestQbertMove : MonoBehaviour {
                 turnoffrenderer();
             }
         }
-        
+
     }
     public void turnoffrenderer()
     {
         timer = 0;
-        QBertRenderer.SetActive (false);
+        QBertRenderer.SetActive(false);
     }
 
 }
