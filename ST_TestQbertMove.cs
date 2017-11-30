@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class ST_TestQbertMove : MonoBehaviour {
    public Vector3 curPosition;
     public float delay = 1;
     private float timer;
-    public MeshRenderer QBertRenderer;
+    public GameObject QBertRenderer;
     // Use this for initialization
     void Start () {
         QB.transform.position = spawnspot;
@@ -22,35 +22,36 @@ public class ST_TestQbertMove : MonoBehaviour {
 
         if (timer > delay)
         {
-            QBertRenderer.enabled = true;
-        }
+            QBertRenderer.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            QB.transform.Translate(0, 0, -1);
-            turnoffrenderer();
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            QB.transform.Translate(0, 1.3f, 1);
-            turnoffrenderer();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            QB.transform.Translate(1, 0, 0);
-            turnoffrenderer();
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            QB.transform.Translate(-1, 1.3f, 0);
-            turnoffrenderer();
+
+            if (Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                QB.transform.Translate(0, 0, -1);
+                turnoffrenderer();
+            }
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                QB.transform.Translate(0, 1.3f, 1);
+                turnoffrenderer();
+            }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                QB.transform.Translate(1, 0, 0);
+                turnoffrenderer();
+            }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                QB.transform.Translate(-1, 1.3f, 0);
+                turnoffrenderer();
+            }
         }
         
     }
     public void turnoffrenderer()
     {
         timer = 0;
-        QBertRenderer.enabled = false;
+        QBertRenderer.SetActive (false);
     }
 
 }
