@@ -17,6 +17,7 @@ public class DR_AI_Control : MonoBehaviour
     private Quaternion CurRotation;
     private GameObject Player;
     private Vector3 PlayerLocation;
+    private Vector3 Distance;
 
 
     void Start()
@@ -30,7 +31,7 @@ public class DR_AI_Control : MonoBehaviour
 
     void Update()
     {
-        //PlayerLocation = Player.transform.position;
+        PlayerLocation = Player.transform.position;
         Timer += Time.deltaTime;
         CurLocation = Enemy.transform.position;
         CurRotation = Enemy.transform.rotation;
@@ -132,28 +133,37 @@ public class DR_AI_Control : MonoBehaviour
         }
         if (Timer > TimeLimit && gameObject.tag == "Coily")
         {
-            if (CurLocation != PlayerLocation)
+            Distance = transform.position - PlayerLocation;
+            //print(Distance);
+            //Move Up and Right
+            if (Distance.y <= -1 && Distance.z <= -1)
             {
-                MoveDirection = Random.Range(0, 2);
-
-                //Move Up and Left
-                if (MoveDirection == 1 && Moves < TotalMoves)
-                {
-                    Enemy.transform.Translate(0, 1, 1);
-                    Timer = 0;
-                    Moves++;
-                    //print("moves left");
-                }
-                //Move Up and Right
-                if (MoveDirection == 0 && Moves < TotalMoves)
-                {
-                    Enemy.transform.Translate(-1, 1, 0);
-                    Timer = 0;
-                    Moves++;
-                    //print("moves right");
-                }
-                //print(Moves);
+                Enemy.transform.Translate(0, 1, 1);
+                Timer = 0;
+                print("moves up and right");
             }
+            //Move Up and Left
+            else if (Distance.x >= 1 && Distance.y <= -1)
+            {
+                Enemy.transform.Translate(-1, 1, 0);
+                Timer = 0;
+                print("moves up and left");
+            }
+            //Move Down and Right
+            else if (Distance.x <= -1 && Distance.y >= 1)
+            {
+                Enemy.transform.Translate(0, -1, 1);
+                Timer = 0;
+                print("moves down and right");
+            }
+            //Move Down and Left
+            else if (Distance.y >= 1 && Distance.z >= 1)
+            {
+                Enemy.transform.Translate(0, -1, -1);
+                Timer = 0;
+                print("moves down and left");
+            }
+            //print(Moves);
         }
     }
 }
