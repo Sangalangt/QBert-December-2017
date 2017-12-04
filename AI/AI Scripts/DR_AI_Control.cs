@@ -133,6 +133,7 @@ public class DR_AI_Control : MonoBehaviour
         }
         if (Timer > TimeLimit && gameObject.tag == "Coily")
         {
+            MoveDirection = Random.Range(0, 4);
             Distance = transform.position - PlayerLocation;
             //print(Distance);
             //Move Up and Right
@@ -162,6 +163,41 @@ public class DR_AI_Control : MonoBehaviour
                 Enemy.transform.Translate(0, -1, -1);
                 Timer = 0;
                 print("moves down and left");
+            }
+            else if (CurLocation == PlayerLocation)
+            {
+                Object.Destroy(gameObject);
+            }
+            else
+            {
+                //Move Up and Right
+                if (MoveDirection == 0)
+                {
+                    Enemy.transform.Translate(0, 1, 1);
+                    Timer = 0;
+                    print("moves randomly up and right");
+                }
+                //Move Up and Left
+                if (MoveDirection == 1)
+                {
+                    Enemy.transform.Translate(-1, 1, 0);
+                    Timer = 0;
+                    print("moves randomly up and left");
+                }
+                //Move Down and Right
+                if (MoveDirection == 2)
+                {
+                    Enemy.transform.Translate(0, -1, 1);
+                    Timer = 0;
+                    print("moves randomly down and right");
+                }
+                //Move Down and Left
+                if (MoveDirection == 3)
+                {
+                    Enemy.transform.Translate(0, -1, -1);
+                    Timer = 0;
+                    print("moves randomly down and left");
+                }
             }
             //print(Moves);
         }
