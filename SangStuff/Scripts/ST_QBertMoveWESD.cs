@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ST_TestQbertMove : MonoBehaviour {
-   public GameObject QB;
-   public Vector3 spawnspot = new Vector3(0, 7, 6);
-   public Vector3 curPosition;
-    public bool canMove; 
-   private float timer;
+public class ST_QBertMoveWESD : MonoBehaviour
+{
+    public GameObject QB;
+    public Vector3 spawnspot = new Vector3(0, 7, 6);
+    public Vector3 curPosition;
+    public bool canMove;
+    private float timer;
     //public MeshRenderer QBertRenderer;
     public GameObject turncontrol;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         QB.transform.position = spawnspot;
-        canMove = false;
+        canMove = true;
 
-	}
-	
+    }
 
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         timer += Time.deltaTime;
         curPosition = QB.transform.position;
         if (canMove == true)
@@ -30,7 +33,7 @@ public class ST_TestQbertMove : MonoBehaviour {
                 turncontrol.transform.eulerAngles = new Vector3(0, 180, 0);
                 turnoffrenderer();
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 QB.transform.Translate(0, 1, 1);
                 turncontrol.transform.eulerAngles = new Vector3(0, 0, 0);
@@ -42,7 +45,7 @@ public class ST_TestQbertMove : MonoBehaviour {
                 turncontrol.transform.eulerAngles = new Vector3(0, 90, 0);
                 turnoffrenderer();
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 QB.transform.Translate(-1, 1, 0);
                 turncontrol.transform.eulerAngles = new Vector3(0, 270, 0);
@@ -57,16 +60,16 @@ public class ST_TestQbertMove : MonoBehaviour {
         }
 
         else if (Input.GetKeyDown(KeyCode.Escape) && canMove == false)
-            {
+        {
             canMove = true;
-            }
+        }
 
 
     }
     public void turnoffrenderer()
     {
         timer = 0;
-    //    QBertRenderer.enabled = false;
+        //    QBertRenderer.enabled = false;
     }
 
 }
