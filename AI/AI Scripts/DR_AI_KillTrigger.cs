@@ -5,11 +5,11 @@ using UnityEngine;
 public class DR_AI_KillTrigger : MonoBehaviour
 {
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.tag == "Kill Volume")
+        if (collider.tag == "Kill Volume")
         {
-            Destroy(gameObject);
+            Object.Destroy(gameObject);
             print("Object killed");
         }
     }
